@@ -53,19 +53,17 @@ export function useChat() {
 
       // todo - bonus: handle changing the message status from 'pending' to 'ok'
       //  when a success response is returned from the server
-      await addNewMessage(newMessage);
-
-      // todo - remove these lines - mocking changing the message status
-      setTimeout(() => {
-        setMessages([
-          ...messages, {
-            ...newMessage,
-            likes: [],
-            authorName: currentUser!.name,
-            status: 'ok'
-          }
-        ]);
-      }, 1000);
+      const msq = await addNewMessage(newMessage)
+      setMessages([
+        ...messages,
+        {
+          ...newMessage,
+          likes: [],
+          authorName: currentUser!.name,
+          status: `${msq}`
+        }
+      ]);
+    
     }
   };
 
